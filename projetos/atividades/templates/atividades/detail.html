@@ -4,7 +4,11 @@
 
 {% block content %}
 <div class="offset-1 col-10 list-div">
-    <h1>{{ tarefa.titulo }}</h1>
-    <p>{{ tarefa.descricao }}</p>
+    <div class="text-left"> <!-- Centraliza o conteúdo -->
+        <h1 class="h4 text-left">{{ tarefa.titulo }}</h1> <!-- Usa a classe h4 para diminuir o tamanho da fonte e text-left para alinhar à esquerda -->
+        <div class="card p-3 mt-3 mb-4 text-left"> <!-- Adiciona uma margem inferior de 4 unidades à caixa de diálogo -->
+            <p class="lead">{{ tarefa.descricao }}</p> <!-- Usa a classe lead para aumentar o tamanho da fonte -->
+        </div>
+    </div>
 </div>
 {% endblock %}

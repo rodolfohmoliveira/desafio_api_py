@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'sobre',
     'usuarios',
     'accounts',
+    'drf_yasg',
     
     
 ]
@@ -133,4 +134,12 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic',
+        }
+    },
+}
 

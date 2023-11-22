@@ -7,4 +7,6 @@ urlpatterns = [
     path('novatarefa/', views.novatarefa, name="nova-tarefa"),
     path('edit/<int:id>/', views.edittarefa, name="edit-tarefa"),
     path('delete/<int:id>/', views.deleteTarefa, name="deleta-tarefa"),
+    path('list_items/', views.list_items, name='list_items'),
+    path('default/', views.atvlist, name="default-list"),
 ]

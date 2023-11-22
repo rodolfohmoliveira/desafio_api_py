@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.db import models
 
 def min_length_validator(value):
     if len(value) < 20:
@@ -17,3 +18,11 @@ class Tarefa(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+    
+class ProjetoInfo(models.Model):
+    nome = models.CharField(max_length=255)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return self.nome
