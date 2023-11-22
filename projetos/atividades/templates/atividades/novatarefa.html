@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Adicione uma tarefa {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mx-auto">
+                <div class="card-header">
+                    <h1 class="h3 text-center">Adicione sua nova tarefa:</h1>
+                </div>
+                <div class="card-body text-center"> <!-- Added text-center class -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="{{ form.titulo.id_for_label }}">Título da Tarefa:</label>
+                            {{ form.titulo }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="{{ form.descricao.id_for_label }}">Descrição:</label>
+                            {{ form.descricao }}
+                        </div>
+                        <button type="submit" class="btn btn-success">Criar Tarefa</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %} Lista de tarefas {% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h1>Lista de tarefas</h1>
+    <a id="add-link" href="novatarefa/">
+        <div class="col-2 add-div">
+            <i class="fas fa-plus"></i> Adicionar tarefa
+        </div>
+    </a>
+
+    <div class="col-9 search-div">
+        <form method="GET" id="search-form">
+            <input class="form-control" type="text" id="search" name="search" placeholder="digite para buscar" value="{{ request.GET.search}}">
+            <i class="fas fa-search" id="search-btn"></i>
+        </form>
+
+        {% if messages%}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags%} class="alert alert-{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+    </div>
+    <ul class="atvlist">
+        {% for tarefa in tarefas %}
+        <li class="atv-item">
+            <span><a href="{% url 'tarefa-view' tarefa.id %}">{{ tarefa.titulo }}</a></span>
+            <span>
+                <a href="#" onclick="confirmDelete('{{ tarefa.id }}')">
+                    <i class="fas fa-trash"></i> Excluir
+                </a>
+            </span>
+            <a href="edit/{{ tarefa.id }}"><span><i class="fas fa-edit"></i></span></a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {%if tarefas.has_previous %}
+            <a href="?page={{ tarefas.previous_page_number}}"><i class="fas fa-arrow-left"></i></a>
+            {% endif %}
+            {%if tarefas.paginator.num_pages %}
+            <span class="current">
+                {{ tarefas.number }} de {{ tarefas.paginator.num_pages }}
+            </span>
+            {% endif %}
+            {%if tarefas.has_next %}
+            <a href="?page={{ tarefas.next_page_number}}"><i class="fas fa-arrow-right"></i></a>
+            {% endif %}
+
+        </span>
+
+    </div>
+</div>
+
+<script>
+    function confirmDelete(tarefaId) {
+        if (confirm("Tem certeza de que deseja excluir esta tarefa?")) {
+            window.location.href = "/delete/" + tarefaId + "/";
+        }
+    }
+</script>
+
+{% endblock %}

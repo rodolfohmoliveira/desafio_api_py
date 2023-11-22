@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Entrar na API {% endblock %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-4">
+        <div class="card auth-card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Entrar na API</h4>
+
+                <form method="post" class="text-center">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+
+                    {{ form.as_p }}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    </div>
+                </form>
+                <p class="change-form-p">Criar conta ? <a href="/accounts/register">Clique aqui!</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
